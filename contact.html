@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | DFK</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="dfk-header"></div>
+
+<main>
+
+  <section class="section" style="padding-top:40px;">
+    <section class="section" style="padding-top:40px;">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <div class="contact-left-col">
+        <h1 class="page-title" style="margin-bottom:20px;">Get In Touch</h1>
+        <div class="contact-form-card">
+        <h3>Send us a Message</h3>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="John" required>
+            </div>
+            <div class="form-field">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="(592) XXX - XXXX">
+            </div>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr;">
+            <div class="form-field">
+              <label for="area">Area of Interest</label>
+              <select id="area">
+                <option value="">Select a Practice Area</option>
+                <option>Corporate &amp; Commercial</option>
+                <option>Property &amp; Estates</option>
+                <option>Mining &amp; Environmental</option>
+                <option>Dispute Resolution</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr;">
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Briefly describe your issue" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+          <p class="form-note" id="formNote">Thank you — your message has been noted. Our team will be in touch shortly.</p>
+        </form>
+        </div>
+      </div>
+
+      <div class="contact-sidebar">
+        <div class="contact-side-card">
+          <h4>Contact Details</h4>
+          <div class="contact-line">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="label">Address</div>
+              <div class="value">79B Cowan Street,<br>Kingston, Georgetown, Guyana</div>
+            </div>
+          </div>
+          <div class="contact-line">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="label">Phone Number</div>
+              <div class="value">(592)226-1126<br>(592)226-0250</div>
+            </div>
+          </div>
+          <div class="contact-line" style="margin-bottom:0;">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="label">Email</div>
+              <div class="value" style="margin-bottom: 10px;">lawoffice@dfkguyana.com</div>
+            </div>
+          </div>
+          <div class="map-embed">
+            <iframe
+              src="https://www.google.com/maps?q=79B+Cowan+Street,+Kingston,+Georgetown,+Guyana&output=embed"
+              width="100%"
+              height="220"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=79B+Cowan+Street,+Kingston,+Georgetown,+Guyana" target="_blank" rel="noopener" class="map-open-link">
+              Open in Google Maps ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-side-card">
+          <h4>Office Hours</h4>
+          <div class="hours-row"><span class="day">Monday</span><span class="time">8:00AM – 4:00PM</span></div>
+          <div class="hours-row"><span class="day">Tuesday</span><span class="time">8:00AM – 4:00PM</span></div>
+          <div class="hours-row"><span class="day">Wednesday</span><span class="time">8:00AM – 4:00PM</span></div>
+          <div class="hours-row"><span class="day">Thursday</span><span class="time">8:00AM – 4:00PM</span></div>
+          <div class="hours-row"><span class="day">Friday</span><span class="time">8:00AM – 4:00PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time">Closed</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="dfk-footer"></div>
+
+<script src="js/components.js"></script>
+<script>
+  dfkInitHeaderFooter('contact');
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formNote').classList.add('show');
+    this.reset();
+  });
+</script>
+</body>
+</html>

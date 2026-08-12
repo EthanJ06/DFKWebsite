@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate & Commercial — Areas of Expertise | DFK</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="dfk-header"></div>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <h1 class="page-title">Corporate and Commercial</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="service-list" id="serviceList"></div>
+    </div>
+  </section>
+</main>
+
+<div id="dfk-footer"></div>
+
+<script src="js/services-data.js"></script>
+<script src="js/components.js"></script>
+<script>
+  dfkInitHeaderFooter('areas-of-expertise');
+  const list = document.getElementById('serviceList');
+  list.innerHTML = DFK_SERVICES.filter(s => s.category.includes('corporate-commercial')).map(s => `
+    <a href="service-detail.html?service=${s.slug}" class="service-card linkable">
+      <div>
+        <h3>${s.title}</h3>
+        <p>${s.description}</p>
+      </div>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+  `).join('');
+</script>
+</body>
+</html>
