@@ -94,6 +94,8 @@ h1,h2,h3,h4{
   gap: 24px;
   padding: 18px 32px 10px;
   max-width: var(--container);
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
   flex-wrap: wrap;
 }
@@ -190,6 +192,7 @@ h1,h2,h3,h4{
   padding: 0 32px 18px;
   display:flex;
   gap: 10px;
+  
 }
 .toggle-btn{
   background: var(--gray-bg-2);
@@ -254,7 +257,7 @@ h1,h2,h3,h4{
   overflow:hidden;
   align-items: stretch;
 }
-.hero-copy p.lead{
+.hero-copy .lead{
   color: var(--text-dim);
   font-size: 1rem;
   max-width: 480px;
@@ -544,6 +547,30 @@ h1,h2,h3,h4{
   .attorney-card .photo{ max-width: 220px; margin:0 auto 20px; }
   .attorney-pair{ grid-template-columns: 1fr; }
   .attorney-details{ grid-template-columns: 1fr; }
+  .attorney-featured{
+    columns: 1;
+    height: auto;
+  }
+  .attorney-featured .attorney-details{
+    column-span: initial;
+  }
+  .attorney-pair .attorney-top{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .attorney-pair .photo{
+    width: 180px;
+    height: 220px;
+  }
+  .attorney-pair .attorney-heading{
+    min-width: 0;
+    text-align: center;
+  }
+  .attorney-pair .attorney-name,
+  .attorney-pair .attorney-role{
+    text-align: center;
+  }
 }
 
 /* =========================
@@ -755,7 +782,6 @@ h1,h2,h3,h4{
    CORPORATE SERVICES PAGE
    ========================= */
 .corp-header{
-  padding: 22px 0;
   border-bottom: 1px solid var(--line);
 }
 .corp-header .header-top{ align-items:flex-start; }
@@ -765,8 +791,10 @@ h1,h2,h3,h4{
   font-size: 1.05rem;
   color: var(--white);
   max-width: 480px;
+  min-width: 0;
+  flex-shrink: 1;
   line-height:1.5;
-  padding-top: 10px;
+  max-height: 32px;
 }
 .corp-hero img{
   border-radius: var(--radius-lg);
@@ -818,7 +846,7 @@ h1,h2,h3,h4{
 
 @media (max-width: 860px){
   .corp-hero{ grid-template-columns: 1fr; }
-  .corp-two-col{ grid-template-columns: 1fr; }
+  .corp-layout{ grid-template-columns: 1fr; }
 }
 
 /* =========================
