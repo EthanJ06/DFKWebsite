@@ -13,7 +13,6 @@
 <main>
 
   <section class="section" style="padding-top:40px;">
-    <section class="section" style="padding-top:40px;">
   <div class="wrap">
     <div class="contact-grid">
 
@@ -22,6 +21,13 @@
         <div class="contact-form-card">
         <h3>Send us a Message</h3>
         <form id="contactForm">
+          <!-- Honeypot field: real users never see or fill this in. Bots that
+               auto-fill every field will trip it, and the submission is
+               silently discarded server-side. -->
+          <div style="position:absolute; left:-9999px;" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-row">
             <div class="form-field">
               <label for="firstName">First Name</label>
@@ -61,8 +67,8 @@
               <textarea id="message" placeholder="Briefly describe your issue" required></textarea>
             </div>
           </div>
-          <button type="submit" class="form-submit">Send Message</button>
-          <p class="form-note" id="formNote">Thank you — your message has been noted. Our team will be in touch shortly.</p>
+          <button type="submit" class="form-submit" id="formSubmitBtn">Send Message</button>
+          <p class="form-note" id="formNote"></p>
         </form>
         </div>
       </div>
@@ -132,8 +138,48 @@
 
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('formNote').classList.add('show');
-    this.reset();
+
+    const form = this;
+    const btn = document.getElementById('formSubmitBtn');
+    const note = document.getElementById('formNote');
+
+    const payload = {
+      firstName: document.getElementById('firstName').value,
+      lastName:  document.getElementById('lastName').value,
+      email:     document.getElementById('email').value,
+      phone:     document.getElementById('phone').value,
+      area:      document.getElementById('area').value,
+      message:   document.getElementById('message').value,
+      website:   document.getElementById('website').value, // honeypot
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    note.classList.remove('show', 'error');
+
+    fetch('backend/form-handler.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(res => res.json())
+      .then(data => {
+        note.textContent = data.message;
+        note.classList.add('show');
+        if (data.success) {
+          form.reset();
+        } else {
+          note.classList.add('error');
+        }
+      })
+      .catch(() => {
+        note.textContent = 'Something went wrong. Please try again or call us directly.';
+        note.classList.add('show', 'error');
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      });
   });
 </script>
 </body>
