@@ -23,7 +23,9 @@
         <h2 id="svcTitle">Practice Area</h2>
         <p id="svcDesc">Loading...</p>
       </div>
+      <h3 class="case-list-heading">Notable Cases</h3>
       <div class="link-grid" id="svcLinks"></div>
+      <p class="case-empty" id="svcEmpty" style="display:none;">Case studies for this practice area will be published here soon.</p>
     </div>
   </section>
 </main>
@@ -43,8 +45,20 @@
   document.getElementById('svcTitle').textContent = service.title + ":";
   document.getElementById('svcDesc').textContent = service.description;
 
-  const linksHTML = [1,2,3,4,5,6].map(n => `<a href="contact.html" class="link-btn">Link ${n}</a>`).join('');
-  document.getElementById('svcLinks').innerHTML = linksHTML;
+  const cases = service.cases || [];
+  const linksEl = document.getElementById('svcLinks');
+  const emptyEl = document.getElementById('svcEmpty');
+
+  if (cases.length === 0) {
+    linksEl.style.display = 'none';
+    emptyEl.style.display = 'block';
+  } else {
+    linksEl.innerHTML = cases.map(c => `
+      <a href="case-studies/${c.file}" target="_blank" rel="noopener" class="link-btn case-link-btn">
+        <span class="pdf-badge">PDF</span>${c.title}
+      </a>
+    `).join('');
+  }
 </script>
 </body>
 </html>

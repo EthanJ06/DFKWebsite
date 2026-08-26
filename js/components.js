@@ -34,7 +34,6 @@ function dfkHeaderHTML(active){
         <a href="attorneys.html" class="${isActive('attorneys')}">Lawyers Directory</a>
         <a href="about.html" class="${isActive('about')}">About Us</a>
         <a href="contact.html" class="${isActive('contact')}">Contact Us</a>
-        <a href="links.html" class="${isActive('links')}">Links</a>
       </nav>
     </div>
     <div class="toggle-row">
